@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInfo : MonoBehaviour
 {
     public float health;//100%=100 HP
+    public int timeWaitingHeal;
+    private float safeTime;
+
     public float speed;
 
-    public GameObject weaponOBJ;
+    public GameObject weapon;
+    public GameObject interFaceImage;
 
     public bool safeZone = false;
 
@@ -21,11 +26,16 @@ public class PlayerInfo : MonoBehaviour
     {
         rd = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        safeTime = -timeWaitingHeal;
     }
 
 
     void Update()
     {
+        if (health > 100) health = 100;
+        if (Time.time - safeTime > timeWaitingHeal) Healing();
+        if(!safeZone) interFaceImage.GetComponent<Image>().color = new Color(105f,0,0, Mathf.InverseLerp(100,-200,health));
+
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));//движение
         moveVelocity = moveInput.normalized * speed;
 
@@ -36,34 +46,26 @@ public class PlayerInfo : MonoBehaviour
             float rotateZ = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, rotateZ);
         }
+
         if (Input.GetMouseButton(0) && !safeZone)
         {
-            weaponOBJ.GetComponent<GunSystem>().Shoot();
+            weapon.GetComponent<GunSystem>().Shoot();
         }
+        weapon.SetActive(!safeZone);
+
 
         if (Input.GetKeyDown(KeyCode.R) && !anim.GetBool("right_Click") && !anim.GetBool("left_Click") && !safeZone)
         {
             anim.SetTrigger("start_Reload");
-            weaponOBJ.GetComponent<GunSystem>().isReadyShoot = false;
+            weapon.GetComponent<GunSystem>().isReadyShoot = false;
         }
 
-        if (Input.GetKey(KeyCode.E))
-        {
-            anim.SetBool("right_Click", true);
-        }
-        else
-        {
-            anim.SetBool("right_Click", false);
-        }
+        if (Input.GetKey(KeyCode.E)) anim.SetBool("right_Click", true);
+        else anim.SetBool("right_Click", false);
 
-        if (Input.GetKey(KeyCode.Q))
-        {
-            anim.SetBool("left_Click", true);
-        }
-        else
-        {
-            anim.SetBool("left_Click", false);
-        }
+
+        if (Input.GetKey(KeyCode.Q)) anim.SetBool("left_Click", true);
+        else anim.SetBool("left_Click", false);
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -77,7 +79,15 @@ public class PlayerInfo : MonoBehaviour
     }
     public void ReloadFromPlayer()
     {
-        weaponOBJ.GetComponent<GunSystem>().Reload();
+        weapon.GetComponent<GunSystem>().Reload();
     }
-
+    private void Healing()
+    {
+        if (health < 100) health += Time.deltaTime * 10;
+    }
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        safeTime = Time.time;
+    }
 }

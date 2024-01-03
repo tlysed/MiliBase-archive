@@ -135,8 +135,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  timeWaitingHeal: 5
   speed: 5
-  weaponOBJ: {fileID: 7412207790190610237}
+  weapon: {fileID: 7412207790190610237}
+  interFaceImage: {fileID: 0}
+  safeZone: 0
 --- !u!50 &1670098563243984402
 Rigidbody2D:
   serializedVersion: 4
@@ -318,7 +321,7 @@ GameObject:
   - component: {fileID: 7811184641033982491}
   m_Layer: 0
   m_Name: Weapon
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -352,12 +355,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxBullets: 90
-  bullets: 30
-  startTimeBtwShots: 0.2
+  bullets: 0
+  startTimeBtwShots:
+  - 0.4
+  - 0.8
+  - 0.2
+  - 1
   isReadyShoot: 1
-  Player: {fileID: 2425141260079245355}
+  amountBulletText: {fileID: 0}
   objBullet: {fileID: 2248579888499724017, guid: 6ee2694b38234ca4ba4ad16746d6f93d, type: 3}
   shootPoint: {fileID: 4312887882134759495}
+  weapomType: 0
 --- !u!212 &975452402729199228
 SpriteRenderer:
   m_ObjectHideFlags: 0

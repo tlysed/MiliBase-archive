@@ -50,10 +50,12 @@ MonoBehaviour:
   speed: 50
   lifeTime: 0.5
   distance: 0.5
-  damage: 5
+  damage: 0a000000080000000500000064000000
   solid:
     serializedVersion: 2
     m_Bits: 64
+  effect: {fileID: 2750453941391587358, guid: f9e7e0c2338cf4a4581e624964d08824, type: 3}
+  weapon: {fileID: 0}
 --- !u!212 &673982768789031581
 SpriteRenderer:
   m_ObjectHideFlags: 0

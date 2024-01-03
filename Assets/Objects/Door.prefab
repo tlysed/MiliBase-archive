@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 30
-  speedChangindDoor: 175
+  speedChangindDoor: 300
 --- !u!212 &2687477745806888900
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -145,7 +145,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.4, y: 0}
-  m_ConnectedAnchor: {x: -1.3, y: 3.25}
+  m_ConnectedAnchor: {x: -8.250003, y: 1.2000046}
   m_UseMotor: 1
   m_Motor:
     m_MotorSpeed: 0
