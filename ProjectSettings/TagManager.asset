@@ -6,7 +6,11 @@ TagManager:
   tags:
   - Box
   - Door
-  - Glass
+  - RoomSpawnPoint
+  - RoomSpawner
+  - Wall
+  - Teleporter
+  - LoaderCanvas
   layers:
   - Default
   - TransparentFX
@@ -17,7 +21,7 @@ TagManager:
   - solidObj
   - 
   - 
-  - 
+  - UI UP
   - 
   - 
   - 
@@ -46,7 +50,4 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3391726453
-    locked: 0
-  - name: New Layer 2
-    uniqueID: 908459615
     locked: 0

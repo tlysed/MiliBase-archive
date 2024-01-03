@@ -9,6 +9,8 @@ public class PlayerInfo : MonoBehaviour
 
     public GameObject weaponOBJ;
 
+    public bool safeZone = false;
+
     private Rigidbody2D rd;
     private Vector2 moveInput;
     private Vector2 moveVelocity;
@@ -27,16 +29,19 @@ public class PlayerInfo : MonoBehaviour
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));//движение
         moveVelocity = moveInput.normalized * speed;
 
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        float rotateZ = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotateZ);
-
-        if (Input.GetMouseButton(0))
+        var mousePosition = Input.mousePosition;
+        if (Camera.main.enabled)
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(mousePosition);
+            float rotateZ = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, rotateZ);
+        }
+        if (Input.GetMouseButton(0) && !safeZone)
         {
             weaponOBJ.GetComponent<GunSystem>().Shoot();
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && anim.GetBool("right_Click") ==false && anim.GetBool("left_Click") == false)
+        if (Input.GetKeyDown(KeyCode.R) && !anim.GetBool("right_Click") && !anim.GetBool("left_Click") && !safeZone)
         {
             anim.SetTrigger("start_Reload");
             weaponOBJ.GetComponent<GunSystem>().isReadyShoot = false;

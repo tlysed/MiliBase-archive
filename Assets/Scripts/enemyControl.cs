@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class enemyControl : MonoBehaviour
 {
     public float health;//100%=100 HP
     public float speed;
 
-    public int rangeOfView;
-
     public GameObject[] pointsOfPath;
     private int correctPoint = 0;
 
-    private bool isTriggered;
+    private bool isTriggered = false;
     private float waitTime;
 
     void Start()
@@ -24,7 +24,7 @@ public class enemyControl : MonoBehaviour
     {
         if (isTriggered == false)
         {
-            if(pointsOfPath!= null) FollowPoints(pointsOfPath[correctPoint]);
+            if (pointsOfPath.Length != 0) FollowPoints(pointsOfPath[correctPoint]);
             if(Vector3.Distance(pointsOfPath[correctPoint].transform.position, transform.position) < 1)
             { 
                 if (waitTime > 0)
@@ -51,11 +51,6 @@ public class enemyControl : MonoBehaviour
         {
             GameObject Player = GameObject.FindGameObjectWithTag("Player");
             Follow(Player);
-
-            if (Vector3.Distance(Player.transform.position, transform.position) > rangeOfView)
-            {
-                isTriggered = false;
-            }
         }
     }
     void FollowPoints(GameObject target)
@@ -84,6 +79,13 @@ public class enemyControl : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isTriggered = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            isTriggered = false;
         }
     }
 }
