@@ -5,16 +5,26 @@ using UnityEngine.UI;
 
 public class PlayerInfo : MonoBehaviour
 {
+    [Header("Health")]
+
     public float health;//100%=100 HP
     public int timeWaitingHeal;
+    public GameObject damageEffect;
+
     private float safeTime;
+
+    [Header("Movement")]
 
     public float speed;
 
-    public GameObject weapon;
-    public GameObject interFaceImage;
+    [Header("Weapon")]
 
     public bool safeZone = false;
+    public GameObject weapon;
+
+    [Header("UI")]
+
+    public GameObject interFaceImage;
 
     private Rigidbody2D rd;
     private Vector2 moveInput;
@@ -32,10 +42,18 @@ public class PlayerInfo : MonoBehaviour
 
     void Update()
     {
-        if (health > 100) health = 100;
-        if (Time.time - safeTime > timeWaitingHeal) Healing();
-        if(!safeZone) interFaceImage.GetComponent<Image>().color = new Color(105f,0,0, Mathf.InverseLerp(100,-200,health));
+        //                                      Health
 
+        if (health > 100) health = 100;
+        else if (health <= 0)
+        {
+            health = 0;
+        }
+        if (Time.time - safeTime > timeWaitingHeal) Healing();
+        if(!safeZone) interFaceImage.GetComponent<Image>().color = new Color(105f,0,0, Mathf.InverseLerp(100,-1,health));
+        
+        //                                      Movement
+        
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));//движение
         moveVelocity = moveInput.normalized * speed;
 
@@ -46,6 +64,8 @@ public class PlayerInfo : MonoBehaviour
             float rotateZ = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, rotateZ);
         }
+
+        //                                      Player Interaction
 
         if (Input.GetMouseButton(0) && !safeZone)
         {
@@ -67,6 +87,8 @@ public class PlayerInfo : MonoBehaviour
         if (Input.GetKey(KeyCode.Q)) anim.SetBool("left_Click", true);
         else anim.SetBool("left_Click", false);
 
+        //                                      Interaction
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             GameObject.FindWithTag("Door").GetComponent<doorSystem>().ChangeDoorState();
@@ -87,7 +109,11 @@ public class PlayerInfo : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        safeTime = Time.time;
+        if (GameObject.FindGameObjectWithTag("RoomSpawner").GetComponent<spawnerRooms>().spawned)
+        {
+            //Destroy(Instantiate(damageEffect,gameObject.transform.position, Quaternion.identity), 1f);
+            health -= damage;
+            safeTime = Time.time;
+        }
     }
 }

@@ -139,6 +139,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &475701022 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5104097858994629325, guid: 4527eca2f4ee54845a6fce8e2fbf6efc, type: 3}
+  m_PrefabInstance: {fileID: 5395747279563996118}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &597647538 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 4711360784607805213, guid: 4527eca2f4ee54845a6fce8e2fbf6efc, type: 3}
@@ -238,6 +249,42 @@ PrefabInstance:
     - target: {fileID: 335431287439770890, guid: f453b82f53b7c1441bef9c308b0f9fd6, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 930866948776691919, guid: f453b82f53b7c1441bef9c308b0f9fd6, type: 3}
+      propertyPath: SpawnOnjectPoints.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 930866948776691919, guid: f453b82f53b7c1441bef9c308b0f9fd6, type: 3}
+      propertyPath: SpawnObjectPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 930866948776691919, guid: f453b82f53b7c1441bef9c308b0f9fd6, type: 3}
+      propertyPath: SpawnObjectPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 930866948776691919, guid: f453b82f53b7c1441bef9c308b0f9fd6, type: 3}
+      propertyPath: SpawnObjectPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 930866948776691919, guid: f453b82f53b7c1441bef9c308b0f9fd6, type: 3}
+      propertyPath: SpawnObjectPoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 930866948776691919, guid: f453b82f53b7c1441bef9c308b0f9fd6, type: 3}
+      propertyPath: SpawnOnjectPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 930866948776691919, guid: f453b82f53b7c1441bef9c308b0f9fd6, type: 3}
+      propertyPath: SpawnOnjectPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 930866948776691919, guid: f453b82f53b7c1441bef9c308b0f9fd6, type: 3}
+      propertyPath: SpawnOnjectPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 930866948776691919, guid: f453b82f53b7c1441bef9c308b0f9fd6, type: 3}
+      propertyPath: SpawnOnjectPoints.Array.data[3]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2085285010835935030, guid: f453b82f53b7c1441bef9c308b0f9fd6, type: 3}
       propertyPath: direction
@@ -623,6 +670,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3181943934866055372, guid: 9118fd1718d3b2146b5980f313cbae5e, type: 3}
+      propertyPath: playerScore
+      value: 
+      objectReference: {fileID: 475701022}
     - target: {fileID: 4312887882134759495, guid: 9118fd1718d3b2146b5980f313cbae5e, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1

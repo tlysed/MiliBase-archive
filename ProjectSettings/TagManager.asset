@@ -12,6 +12,8 @@ TagManager:
   - Teleporter
   - LoaderCanvas
   - Weapon
+  - EnemyPoint
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -20,9 +22,9 @@ TagManager:
   - Water
   - UI
   - solidObj
+  - Player
+  - Enemy
   - 
-  - 
-  - UI UP
   - 
   - 
   - 

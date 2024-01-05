@@ -11,6 +11,7 @@ public class bulletphysics : MonoBehaviour
     public float distance;
     public List<int> damage;
     private int realDamage = 5;
+    public bool enemyBullet;
 
     public LayerMask solid;
 
@@ -18,9 +19,9 @@ public class bulletphysics : MonoBehaviour
     public GameObject weapon;
     void Start()
     {
-         weapon = GameObject.FindGameObjectWithTag("Weapon");
+        weapon = GameObject.FindGameObjectWithTag("Weapon");
         rd = GetComponent<Rigidbody2D>();
-        if(weapon != null)
+        if(weapon != null && !enemyBullet)
         {
             if (weapon.GetComponent<GunSystem>().weapomType == weapomTypeEnum.pistol)
             {
@@ -59,6 +60,10 @@ public class bulletphysics : MonoBehaviour
             else if (hitInfo.collider.CompareTag("Player"))
             {
                 hitInfo.collider.GetComponentInParent<PlayerInfo>().TakeDamage(realDamage);
+            }
+            else if (hitInfo.collider.CompareTag("Enemy"))
+            {
+                hitInfo.collider.GetComponentInParent<enemyControl>().TakeDamage(realDamage);
             }
             Destroy(gameObject);
         }
