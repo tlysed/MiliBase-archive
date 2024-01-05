@@ -9,9 +9,10 @@ public class RoomSystem : MonoBehaviour
     public List<GameObject> objectToSpawn;
 
     public List<GameObject> SpawnObjectPoints;
+    public List<GameObject> metalDoors;
 
-     public bool playerInRoom = false;
-     public List<GameObject> enemyInRoom;
+    [HideInInspector] public bool playerInRoom = false;
+    [HideInInspector] public List<GameObject> enemyInRoom;
     private void Start()
     {
         for(int i = 0;i < SpawnObjectPoints.Count; i++)
@@ -45,6 +46,14 @@ public class RoomSystem : MonoBehaviour
             {
                 enemyInRoom[i].SetActive(true);
             }
+            if(enemyInRoom.Count == 0)
+            {
+                for (int i = 0; i < metalDoors.Count; i++)
+                {
+                    Destroy(metalDoors[i]);
+                    metalDoors.RemoveAt(i);
+                }
+            }
         }
         if(!playerInRoom)
         {
@@ -57,6 +66,7 @@ public class RoomSystem : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) playerInRoom = true;
+        if (collision.CompareTag("MetalDoor")) metalDoors.Add(collision.gameObject);
     }
     private void OnTriggerStay2D(Collider2D collision)
     {

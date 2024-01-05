@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
 public class spawnerRooms : MonoBehaviour
 {
+    public GameObject playerRoom;
     public List<GameObject> startSpawnPoints;
 
     public List<Rooms> topRoom;
@@ -59,6 +59,6 @@ public class spawnerRooms : MonoBehaviour
             Instantiate(Portal, finalRooms[0].transform);
             spawned = true;
         }
-
+        if(spawned) { Destroy(playerRoom); }
     }
 }

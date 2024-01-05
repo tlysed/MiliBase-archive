@@ -10,7 +10,7 @@ public class bulletphysics : MonoBehaviour
     public float lifeTime;
     public float distance;
     public List<int> damage;
-    private int realDamage = 5;
+    private int realDamage = 3;
     public bool enemyBullet;
 
     public LayerMask solid;
@@ -57,7 +57,7 @@ public class bulletphysics : MonoBehaviour
             {
                 hitInfo.collider.GetComponentInParent<doorSystem>().TakeDamage(realDamage);
             }
-            else if (hitInfo.collider.CompareTag("Player"))
+            else if (hitInfo.collider.CompareTag("Player") && !enemyBullet)
             {
                 hitInfo.collider.GetComponentInParent<PlayerInfo>().TakeDamage(realDamage);
             }

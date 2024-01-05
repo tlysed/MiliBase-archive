@@ -37,15 +37,18 @@ public class GunSystem : MonoBehaviour
     }
     private void Update()
     {
-        if (isReadyShoot)
+        if (!GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInfo>().safeZone)
         {
-            amountBulletText.text = bullets.ToString() + "/" + maxBullets.ToString();
-            amountBulletText.color = Color.white;
-        }
-        else
-        {
-            amountBulletText.text = "Reloading"; 
-            amountBulletText.color = Color.red;
+            if (isReadyShoot)
+            {
+                amountBulletText.text = bullets.ToString() + "/" + maxBullets.ToString();
+                amountBulletText.color = Color.white;
+            }
+            else
+            {
+                amountBulletText.text = "Reloading";
+                amountBulletText.color = Color.red;
+            }
         }
     }
     public void Shoot()

@@ -47,6 +47,7 @@ public class PlayerInfo : MonoBehaviour
         if (health > 100) health = 100;
         else if (health <= 0)
         {
+            GameObject.FindGameObjectWithTag("LoaderCanvas").GetComponent<loaderSystem>().UnLoadingLevel();
             health = 0;
         }
         if (Time.time - safeTime > timeWaitingHeal) Healing();
@@ -71,7 +72,6 @@ public class PlayerInfo : MonoBehaviour
         {
             weapon.GetComponent<GunSystem>().Shoot();
         }
-        weapon.SetActive(!safeZone);
 
 
         if (Input.GetKeyDown(KeyCode.R) && !anim.GetBool("right_Click") && !anim.GetBool("left_Click") && !safeZone)

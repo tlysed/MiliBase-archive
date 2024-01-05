@@ -20,7 +20,7 @@ public class loaderSystem : MonoBehaviour
     {
         if (!levelLoaded)
         {
-            if (SceneManager.GetActiveScene().buildIndex == 1)
+            if (SceneManager.GetActiveScene().buildIndex == 2)
             {
                 if (GameObject.FindGameObjectWithTag("RoomSpawner").GetComponent<spawnerRooms>().spawned)
                 {
