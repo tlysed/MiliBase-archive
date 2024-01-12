@@ -1480,8 +1480,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReferenceResolution: {x: 960, y: 540}
-  Mode: 3
-  MatchWidthOrHeight: 0.5
+  Mode: 2
+  MatchWidthOrHeight: 0.12
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

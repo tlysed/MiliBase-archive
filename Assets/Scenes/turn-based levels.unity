@@ -582,9 +582,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b44ebb9900a3743ba7a1c65283d6ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReferenceResolution: {x: 960, y: 54}
-  Mode: 3
-  MatchWidthOrHeight: 0.5
+  ReferenceResolution: {x: 960, y: 540}
+  Mode: 2
+  MatchWidthOrHeight: 0.12
 --- !u!1 &1523744848
 GameObject:
   m_ObjectHideFlags: 0

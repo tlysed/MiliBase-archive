@@ -299,8 +299,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReferenceResolution: {x: 960, y: 540}
-  Mode: 3
-  MatchWidthOrHeight: 0.5
+  Mode: 2
+  MatchWidthOrHeight: 0.12
 --- !u!1 &677725623 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7412207790190610237, guid: 9118fd1718d3b2146b5980f313cbae5e, type: 3}
