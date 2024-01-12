@@ -3,28 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
 public class PlayerInfo : MonoBehaviour
 {
     [Header("Health")]
 
     public float health;//100%=100 HP
-    public int timeWaitingHeal;
-    public GameObject damageEffect;
+    [SerializeField] private int timeWaitingHeal;
+    [SerializeField] private GameObject damageEffect;
 
     private float safeTime;
 
     [Header("Movement")]
 
-    public float speed;
+    [SerializeField] private float speed;
+    [SerializeField] public static bool isMobile = false;
+    [SerializeField] private Joystick _walkJoystick;
+    [SerializeField] private Joystick _shootJoystick;
+
 
     [Header("Weapon")]
 
-    public bool safeZone = false;
-    public GameObject weapon;
+    [SerializeField] public bool safeZone = false;
+    [SerializeField] private GameObject weapon;
 
     [Header("UI")]
 
-    public GameObject interFaceImage;
+    [SerializeField] private GameObject interFaceImage;
 
     private Rigidbody2D rd;
     private Vector2 moveInput;
@@ -37,6 +43,12 @@ public class PlayerInfo : MonoBehaviour
         rd = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         safeTime = -timeWaitingHeal;
+
+        if(!isMobile)
+        {
+            _walkJoystick.gameObject.SetActive(false);
+            _shootJoystick.gameObject.SetActive(false);
+        }
     }
 
 
@@ -47,34 +59,50 @@ public class PlayerInfo : MonoBehaviour
         if (health > 100) health = 100;
         else if (health <= 0)
         {
-            GameObject.FindGameObjectWithTag("LoaderCanvas").GetComponent<loaderSystem>().UnLoadingLevel();
+            GameObject.FindGameObjectWithTag("LoaderCanvas").GetComponent<loaderSystem>().UnLoadingLevel(1);
             health = 0;
         }
         if (Time.time - safeTime > timeWaitingHeal) Healing();
         if(!safeZone) interFaceImage.GetComponent<Image>().color = new Color(105f,0,0, Mathf.InverseLerp(100,-1,health));
         
         //                                      Movement
-        
-        moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));//движение
-        moveVelocity = moveInput.normalized * speed;
-
-        var mousePosition = Input.mousePosition;
-        if (Camera.main.enabled)
+        if(!isMobile)
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(mousePosition);
-            float rotateZ = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg;
+            moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));//движение
+
+            var mousePosition = Input.mousePosition;
+            if (Camera.main.enabled)
+            {
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(mousePosition);
+                float rotateZ = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0f, 0f, rotateZ);
+            }
+        }
+        else if(isMobile)
+        {
+            float rotateZ;
+            moveInput = new Vector2(_walkJoystick.Horizontal, _walkJoystick.Vertical);//движение
+            if (Mathf.Abs(_shootJoystick.Horizontal) > 0 || Mathf.Abs(_shootJoystick.Horizontal) > 0)
+            {
+                rotateZ = Mathf.Atan2(_shootJoystick.Vertical, _shootJoystick.Horizontal) * Mathf.Rad2Deg;
+                weapon.GetComponent<GunSystem>().Shoot();
+            }
+            else
+            {
+                rotateZ = Mathf.Atan2(_walkJoystick.Vertical, _walkJoystick.Horizontal) * Mathf.Rad2Deg;
+            }
             transform.rotation = Quaternion.Euler(0f, 0f, rotateZ);
         }
+        moveVelocity = moveInput.normalized * speed;
 
         //                                      Player Interaction
 
-        if (Input.GetMouseButton(0) && !safeZone)
+        if (Input.GetMouseButton(0) && !safeZone && !isMobile)
         {
             weapon.GetComponent<GunSystem>().Shoot();
         }
 
-
-        if (Input.GetKeyDown(KeyCode.R) && !anim.GetBool("right_Click") && !anim.GetBool("left_Click") && !safeZone)
+        if ((Input.GetKeyDown(KeyCode.R) && !anim.GetBool("right_Click") && !anim.GetBool("left_Click") && !safeZone)|| weapon.GetComponent<GunSystem>().bullets == 0)
         {
             anim.SetTrigger("start_Reload");
             weapon.GetComponent<GunSystem>().isReadyShoot = false;
@@ -115,5 +143,9 @@ public class PlayerInfo : MonoBehaviour
             health -= damage;
             safeTime = Time.time;
         }
+    }
+    public void ChangeTypeControl()
+    {
+        isMobile = !isMobile;
     }
 }

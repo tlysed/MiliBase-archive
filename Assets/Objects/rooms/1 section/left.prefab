@@ -48,6 +48,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8582992636546326769}
+  - component: {fileID: 3266759123658767899}
   m_Layer: 0
   m_Name: left
   m_TagString: Untagged
@@ -77,6 +78,24 @@ Transform:
   - {fileID: 181829401894974074}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3266759123658767899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785053562817813535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a64a2f871ea504f92c406f3552832f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyToSpawn: {fileID: 0}
+  objectToSpawn: []
+  SpawnObjectPoints: []
+  metalDoors: []
+  playerInRoom: 0
+  enemyInRoom: []
 --- !u!1 &4437842873453358301
 GameObject:
   m_ObjectHideFlags: 0

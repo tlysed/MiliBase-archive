@@ -25,25 +25,25 @@ public class WeaponChangerOBJ : MonoBehaviour
         else if (type == WeaponType.rifle) image.GetComponent<SpriteRenderer>().sprite = sprites[2];
         else if (type == WeaponType.heavy) image.GetComponent<SpriteRenderer>().sprite = sprites[3];
 
-        if(player.GetComponent<PlayerStatistics>().CorrectLevel <= 0 && type == WeaponType.pistol)
+        if(PlayerStatistics.Levels   <= 0 && type == WeaponType.pistol)
         {
             var color = image.GetComponent<SpriteRenderer>().color;
             color.a = 0.1f;
             image.GetComponent<SpriteRenderer>().color = color;
         }
-        else if (player.GetComponent<PlayerStatistics>().CorrectLevel <= 1 && type == WeaponType.shotgun)
+        else if (PlayerStatistics.Levels <= 1 && type == WeaponType.shotgun)
         {
             var color = image.GetComponent<SpriteRenderer>().color;
             color.a = 0.1f;
             image.GetComponent<SpriteRenderer>().color = color;
         }
-        else if (player.GetComponent<PlayerStatistics>().CorrectLevel <= 2 && type == WeaponType.rifle)
+        else if (PlayerStatistics.Levels <= 2 && type == WeaponType.rifle)
         {
             var color = image.GetComponent<SpriteRenderer>().color;
             color.a = 0.1f;
             image.GetComponent<SpriteRenderer>().color = color;
         } 
-        else if (player.GetComponent<PlayerStatistics>().CorrectLevel <= 3 && type == WeaponType.heavy)
+        else if (PlayerStatistics.Levels <= 3 && type == WeaponType.heavy)
         {
             var color = image.GetComponent<SpriteRenderer>().color;
             color.a = 0.1f;
@@ -66,9 +66,9 @@ public class WeaponChangerOBJ : MonoBehaviour
     void ChangeWeaponType()
     {
         var player = GameObject.FindGameObjectWithTag("Player");
-        if (type == WeaponType.pistol && player.GetComponent<PlayerStatistics>().CorrectLevel >= 1) { player.GetComponentInChildren<GunSystem>().weapomType = weapomTypeEnum.pistol; }
-        else if (type == WeaponType.shotgun && player.GetComponent<PlayerStatistics>().CorrectLevel >= 2) player.GetComponentInChildren<GunSystem>().weapomType = weapomTypeEnum.shotgun;
-        else if (type == WeaponType.rifle && player.GetComponent<PlayerStatistics>().CorrectLevel >= 3) player.GetComponentInChildren<GunSystem>().weapomType = weapomTypeEnum.rifle;
-        else if (type == WeaponType.heavy && player.GetComponent<PlayerStatistics>().CorrectLevel >= 4) player.GetComponentInChildren<GunSystem>().weapomType = weapomTypeEnum.heavy;
+        if (type == WeaponType.pistol && PlayerStatistics.Levels >= 1) { player.GetComponentInChildren<GunSystem>().weapomType = weapomTypeEnum.pistol; }
+        else if (type == WeaponType.shotgun && PlayerStatistics.Levels >= 2) player.GetComponentInChildren<GunSystem>().weapomType = weapomTypeEnum.shotgun;
+        else if (type == WeaponType.rifle && PlayerStatistics.Levels >= 3) player.GetComponentInChildren<GunSystem>().weapomType = weapomTypeEnum.rifle;
+        else if (type == WeaponType.heavy && PlayerStatistics.Levels >= 4) player.GetComponentInChildren<GunSystem>().weapomType = weapomTypeEnum.heavy;
     }
 }

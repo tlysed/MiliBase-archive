@@ -18,9 +18,8 @@ public class spawnerRooms : MonoBehaviour
     {
         public List<GameObject> rooms;
     }
-
     [HideInInspector] public List<GameObject> finalRooms;
-    [HideInInspector] public int finalRoomsAmount = -1;
+    [HideInInspector] public int finalRoomsAmount = 0;
 
     public int minRooms;
     public int maxRooms;
@@ -43,22 +42,29 @@ public class spawnerRooms : MonoBehaviour
     }
     private void Update()
     {
-        if(!spawned && Input.GetKeyDown(KeyCode.Escape))
+        if (spawned)
         {
-            SceneManager.LoadScene(0);
+            Destroy(playerRoom);
         }
-        if ((finalRoomsAmount - amountRooms) >= 2 && !spawned)
+
+        if (!spawned && Input.GetKeyDown(KeyCode.Escape))
         {
-            Instantiate(Portal, finalRooms[0].transform);
+            SceneManager.LoadScene(1);
+        }
+
+        if (finalRooms.Count >= 2 && !spawned)
+        {
+            Instantiate(Portal, finalRooms[0].transform).GetComponent<sceneTeleportSystem>().levelToLoad = 1;
             Camera.main.transform.position = new Vector3(finalRooms[1].transform.position.x, finalRooms[1].transform.position.y, Camera.main.transform.position.z);
             GameObject.FindGameObjectWithTag("Player").transform.position = finalRooms[1].transform.position;
             spawned = true;
         }
-        else if ((finalRoomsAmount - amountRooms) == 1 && !spawned)
+        else if (finalRooms.Count == 1 && !spawned)
         {
             Instantiate(Portal, finalRooms[0].transform);
             spawned = true;
         }
-        if(spawned) { Destroy(playerRoom); }
+
+
     }
 }

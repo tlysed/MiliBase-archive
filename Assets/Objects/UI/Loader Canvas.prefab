@@ -315,7 +315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0cc100214d4d5408960827ee6951c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToLoad: 0
   loadingScreen: {fileID: 4244171973261948637}
   slider: {fileID: 6686270779062863453}
 --- !u!223 &4296572738804950954
@@ -339,7 +338,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &9012563028472302269
 MonoBehaviour:

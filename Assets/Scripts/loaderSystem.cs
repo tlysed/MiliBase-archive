@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class loaderSystem : MonoBehaviour
 {
     private Animator animator;
-    public int levelToLoad;
+    private int levelToLoad;
     public GameObject loadingScreen;
     public Slider slider;
     private bool levelLoaded = false;
@@ -37,8 +37,9 @@ public class loaderSystem : MonoBehaviour
             }
         }
     }
-    public void UnLoadingLevel()
+    public void UnLoadingLevel(int level)
     {
+        levelToLoad = level;
         animator.SetTrigger("unloading");
     }
     public void UnLoadingComplete() 

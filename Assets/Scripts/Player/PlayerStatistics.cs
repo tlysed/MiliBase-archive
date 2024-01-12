@@ -17,7 +17,6 @@ public class PlayerStatistics : MonoBehaviour
     public static float Points = 0;
     public static int Kills = 0;
     public static int Levels = 1;
-    public int CorrectLevel;
 
     [Header("UI")]
     public TextMeshProUGUI playerScore;
@@ -29,7 +28,7 @@ public class PlayerStatistics : MonoBehaviour
         {
             minPoints += minPoints/2;
             Points = 0;
-            CorrectLevel++;
+            PlayerStatistics.Levels++;
             realWaitTime = Time.time;
         }
         if (Time.time - realWaitTime < waitTime)
@@ -46,13 +45,5 @@ public class PlayerStatistics : MonoBehaviour
     public void TakePoints(int points)
     {
         Points += points;
-    }
-    private void OnDestroy()
-    {
-        Levels = CorrectLevel;
-    }
-    private void OnEnable()
-    {
-        CorrectLevel = Levels;
     }
 }

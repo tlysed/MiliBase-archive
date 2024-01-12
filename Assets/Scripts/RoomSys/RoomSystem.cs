@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class RoomSystem : MonoBehaviour
 {
@@ -40,18 +39,21 @@ public class RoomSystem : MonoBehaviour
     }
     private void Update()
     {
-        if (GameObject.FindGameObjectWithTag("RoomSpawner").GetComponent<spawnerRooms>().spawned && playerInRoom)
+        if (GameObject.FindGameObjectWithTag("RoomSpawner") != null)
         {
-            for (int i = 0; i < enemyInRoom.Count; i++)
+            if (GameObject.FindGameObjectWithTag("RoomSpawner").GetComponent<spawnerRooms>().spawned && playerInRoom)
             {
-                enemyInRoom[i].SetActive(true);
-            }
-            if(enemyInRoom.Count == 0)
-            {
-                for (int i = 0; i < metalDoors.Count; i++)
+                for (int i = 0; i < enemyInRoom.Count; i++)
                 {
-                    Destroy(metalDoors[i]);
-                    metalDoors.RemoveAt(i);
+                    enemyInRoom[i].SetActive(true);
+                }
+                if (enemyInRoom.Count == 0)
+                {
+                    for (int i = 0; i < metalDoors.Count; i++)
+                    {
+                        Destroy(metalDoors[i]);
+                        metalDoors.RemoveAt(i);
+                    }
                 }
             }
         }
