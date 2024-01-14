@@ -9,23 +9,23 @@ public class spawnerRooms : MonoBehaviour
     [SerializeField] private GameObject playerRoom;
     [SerializeField] private List<GameObject> startSpawnPoints;
 
-    public List<Rooms> topRoom;
-    public List<Rooms> downRoom;
-    public List<Rooms> leftRoom;
-    public List<Rooms> rightRoom;
-    [SerializeField] private List<Rooms> allRoom;
+    [SerializeField] public List<Rooms> topRoom;
+    [SerializeField] public List<Rooms> downRoom;
+    [SerializeField] public List<Rooms> leftRoom;
+    [SerializeField] public List<Rooms> rightRoom;
+
     [System.Serializable]
     public class Rooms
     {
         public List<GameObject> rooms;
     }
+
     [HideInInspector] public List<GameObject> finalRooms;
-    [HideInInspector] public int finalRoomsAmount = 0;
+    [HideInInspector] public List<GameObject> allRoom;
 
     [SerializeField] private int minRooms;
     [SerializeField] private int maxRooms;
 
-    [HideInInspector] public int nowRoom = 1;
     [HideInInspector] public int amountRooms = 0;
 
     [SerializeField] private GameObject Portal;
@@ -52,20 +52,36 @@ public class spawnerRooms : MonoBehaviour
         {
             SceneManager.LoadScene(1);
         }
-
-        if (finalRooms.Count >= 2 && !spawned)
+        if(!spawned && allRoom.Count == amountRooms && GameObject.FindGameObjectsWithTag("RoomSpawnPoint").Length == 0)
         {
-            Instantiate(Portal, finalRooms[0].transform).GetComponent<sceneTeleportSystem>().levelToLoad = 1;
-            Camera.main.transform.position = new Vector3(finalRooms[1].transform.position.x, finalRooms[1].transform.position.y, Camera.main.transform.position.z);
-            GameObject.FindGameObjectWithTag("Player").transform.position = finalRooms[1].transform.position;
-            spawned = true;
+            if (finalRooms.Count >= 2)
+            {
+                for(int i = 0; i < allRoom.Count; i++)
+                {
+                    allRoom[i].GetComponent<RoomSystem>().SpawnEntity();
+                }
+                Instantiate(Portal, finalRooms[0].transform).GetComponent<sceneTeleportSystem>().levelToLoad = 1;
+                Camera.main.transform.position = new Vector3(finalRooms[1].transform.position.x, finalRooms[1].transform.position.y, Camera.main.transform.position.z);
+                GameObject.FindGameObjectWithTag("Player").transform.position = finalRooms[1].transform.position;
+                spawned = true;
+            }
+            else if (finalRooms.Count == 1 && !spawned)
+            {
+                int rand = Random.Range(0, allRoom.Count);
+                for (int i = 0; i < allRoom.Count; i++)
+                {
+                    if(i != rand) allRoom[i].GetComponent<RoomSystem>().SpawnEntity();
+                }
+                Instantiate(Portal, finalRooms[0].transform).GetComponent<sceneTeleportSystem>().levelToLoad = 1;
+                Camera.main.transform.position = new Vector3(allRoom[rand].transform.position.x, allRoom[rand].transform.position.y, Camera.main.transform.position.z);
+                GameObject.FindGameObjectWithTag("Player").transform.position = allRoom[rand].transform.position;
+                spawned = true;
+            }
+            else
+            {
+                GameObject.FindGameObjectWithTag("LoaderCanvas").GetComponent<loaderSystem>().UnLoadingLevel(SceneManager.GetActiveScene().buildIndex);
+                Debug.Log("Перезапуск");
+            }
         }
-        else if (finalRooms.Count == 1 && !spawned)
-        {
-            Instantiate(Portal, finalRooms[0].transform);
-            spawned = true;
-        }
-
-
     }
 }

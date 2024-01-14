@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2031329792716722954}
-  - component: {fileID: 9206788235840936570}
+  - component: {fileID: -5376439646667076508}
   - component: {fileID: 8574688656539086897}
   m_Layer: 0
   m_Name: DoorChecker
@@ -65,7 +65,7 @@ Transform:
   - {fileID: 236545273349813747}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9206788235840936570
+--- !u!114 &-5376439646667076508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

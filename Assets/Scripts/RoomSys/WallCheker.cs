@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class WallCheker : MonoBehaviour
 {
-    public Transform spawnPoint;
-    public GameObject metalDoor;
+    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private GameObject metalDoor;
     
     private void OnTriggerStay2D(Collider2D other)
     {

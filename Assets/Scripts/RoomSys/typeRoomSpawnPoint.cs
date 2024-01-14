@@ -27,35 +27,32 @@ public class typeRoomSpawnPoint : MonoBehaviour
     }
     public void Spawn()
     {
-        
-        if (!spawned && scriptRoom.nowRoom < scriptRoom.amountRooms)
+        if (!spawned && scriptRoom.allRoom.Count < scriptRoom.amountRooms)
         {
             if(direction == Direction.Top)
             {
                 rand = Random.Range(0, scriptRoom.topRoom[1].rooms.Count);
-                Instantiate(scriptRoom.topRoom[1].rooms[rand], transform.position, scriptRoom.topRoom[1].rooms[rand].transform.rotation);
+                scriptRoom.allRoom.Add(Instantiate(scriptRoom.topRoom[1].rooms[rand], transform.position, scriptRoom.topRoom[1].rooms[rand].transform.rotation));
             }
             else if (direction == Direction.Down)
             {
                 rand = Random.Range(0, scriptRoom.topRoom[1].rooms.Count);
-                Instantiate(scriptRoom.downRoom[1].rooms[rand], transform.position, scriptRoom.downRoom[1].rooms[rand].transform.rotation);
+                scriptRoom.allRoom.Add(Instantiate(scriptRoom.downRoom[1].rooms[rand], transform.position, scriptRoom.downRoom[1].rooms[rand].transform.rotation));
             }
             else if (direction == Direction.Left)
             {
                 rand = Random.Range(0, scriptRoom.topRoom[1].rooms.Count);
-                Instantiate(scriptRoom.leftRoom[1].rooms[rand], transform.position, scriptRoom.leftRoom[1].rooms[rand].transform.rotation);
+                scriptRoom.allRoom.Add(Instantiate(scriptRoom.leftRoom[1].rooms[rand], transform.position, scriptRoom.leftRoom[1].rooms[rand].transform.rotation));
             }
             else if (direction == Direction.Right)
             {
                 rand = Random.Range(0, scriptRoom.topRoom[1].rooms.Count);
-                Instantiate(scriptRoom.rightRoom[1].rooms[rand], transform.position, scriptRoom.rightRoom[1].rooms[rand].transform.rotation);
+                scriptRoom.allRoom.Add(Instantiate(scriptRoom.rightRoom[1].rooms[rand], transform.position, scriptRoom.rightRoom[1].rooms[rand].transform.rotation));
             }
-            scriptRoom.nowRoom++;
             spawned = true;
         }
-        else if (!spawned && scriptRoom.nowRoom == scriptRoom.amountRooms)
+        else if (!spawned && scriptRoom.allRoom.Count == scriptRoom.amountRooms)
         {
-            scriptRoom.finalRoomsAmount = GameObject.FindGameObjectsWithTag("RoomSpawnPoint").Length;
             if (direction == Direction.Top)
             {
                 scriptRoom.finalRooms.Add(Instantiate(scriptRoom.topRoom[0].rooms[0], transform.position, scriptRoom.topRoom[0].rooms[0].transform.rotation));

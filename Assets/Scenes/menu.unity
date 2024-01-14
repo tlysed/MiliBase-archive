@@ -948,7 +948,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0412\u0435\u0440\u0441\u0438\u044F: Alpha Build 0.2"
+  m_text: "\u0412\u0435\u0440\u0441\u0438\u044F: Alpha Build 0.3"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1068f888859fca04f868295a01690387, type: 2}
   m_sharedMaterial: {fileID: -3759198749870987291, guid: 1068f888859fca04f868295a01690387, type: 2}

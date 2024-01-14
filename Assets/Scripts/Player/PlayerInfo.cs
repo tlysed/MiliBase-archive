@@ -137,12 +137,8 @@ public class PlayerInfo : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        if (GameObject.FindGameObjectWithTag("RoomSpawner").GetComponent<spawnerRooms>().spawned)
-        {
-            //Destroy(Instantiate(damageEffect,gameObject.transform.position, Quaternion.identity), 1f);
-            health -= damage;
-            safeTime = Time.time;
-        }
+        health -= damage;
+        safeTime = Time.time;
     }
     public void ChangeTypeControl()
     {

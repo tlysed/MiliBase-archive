@@ -12,31 +12,6 @@ public class RoomSystem : MonoBehaviour
 
     [HideInInspector] public bool playerInRoom = false;
     [HideInInspector] public List<GameObject> enemyInRoom;
-    private void Start()
-    {
-        for(int i = 0;i < SpawnObjectPoints.Count; i++)
-        {
-            float randCount = Random.Range(0,11);
-            if(randCount < 4.5f ) { Destroy(SpawnObjectPoints[i]); SpawnObjectPoints.RemoveAt(i); }
-        }
-        for (int i = 0; i < SpawnObjectPoints.Count; i++)
-        {
-            float randCount = Random.Range(0, 11);
-            if (randCount < 4.5f)
-            {
-                int rand = Random.Range(0, objectToSpawn.Count - 1);
-                var obj = Instantiate(objectToSpawn[rand], SpawnObjectPoints[i].transform.position, Quaternion.identity);
-                obj.transform.parent = SpawnObjectPoints[i].transform;
-            }
-            else
-            {
-                var enemy = Instantiate(enemyToSpawn, SpawnObjectPoints[i].transform.position, Quaternion.identity);
-                enemy.transform.parent = SpawnObjectPoints[i].transform;
-                enemyInRoom.Add(enemy);
-                enemy.SetActive(false);
-            }
-        }
-    }
     private void Update()
     {
         if (GameObject.FindGameObjectWithTag("RoomSpawner") != null)
@@ -65,14 +40,35 @@ public class RoomSystem : MonoBehaviour
             }
         }
     }
+    public void SpawnEntity()
+    {
+        for (int i = 0; i < SpawnObjectPoints.Count; i++)
+        {
+            float randCount = Random.Range(0, 11);
+            if (randCount < 4.5f) { Destroy(SpawnObjectPoints[i]); SpawnObjectPoints.RemoveAt(i); }
+        }
+        for (int i = 0; i < SpawnObjectPoints.Count; i++)
+        {
+            float randCount = Random.Range(0, 11);
+            if (randCount < 4.5f)
+            {
+                int rand = Random.Range(0, objectToSpawn.Count - 1);
+                var obj = Instantiate(objectToSpawn[rand], SpawnObjectPoints[i].transform.position, Quaternion.identity);
+                obj.transform.parent = SpawnObjectPoints[i].transform;
+            }
+            else
+            {
+                var enemy = Instantiate(enemyToSpawn, SpawnObjectPoints[i].transform.position, Quaternion.identity);
+                enemy.transform.parent = SpawnObjectPoints[i].transform;
+                enemyInRoom.Add(enemy);
+                enemy.SetActive(false);
+            }
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) playerInRoom = true;
         if (collision.CompareTag("MetalDoor")) metalDoors.Add(collision.gameObject);
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player")) playerInRoom = true;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
