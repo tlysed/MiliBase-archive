@@ -102,7 +102,7 @@ public class PlayerInfo : MonoBehaviour
             weapon.GetComponent<GunSystem>().Shoot();
         }
 
-        if ((Input.GetKeyDown(KeyCode.R) && !anim.GetBool("right_Click") && !anim.GetBool("left_Click") && !safeZone)|| weapon.GetComponent<GunSystem>().bullets == 0)
+        if ((Input.GetKeyDown(KeyCode.R) && !anim.GetBool("right_Click") && !anim.GetBool("left_Click") && !safeZone) || weapon.GetComponent<GunSystem>().bullets == 0 && weapon.GetComponent<GunSystem>().maxBullets != 0)
         {
             anim.SetTrigger("start_Reload");
             weapon.GetComponent<GunSystem>().isReadyShoot = false;

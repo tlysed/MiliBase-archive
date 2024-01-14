@@ -14,17 +14,17 @@ public enum weapomTypeEnum
 public class GunSystem : MonoBehaviour
 {
     [HideInInspector] public int maxBullets;
-    [HideInInspector] public int bullets;//30-автоматы/6-дробовики/1-тяжелое/18-пистолет
+     public int bullets;//30-автоматы/6-дробовики/1-тяжелое/18-пистолет
 
-    public List<float> startTimeBtwShots;
+    [SerializeField] private List<float> startTimeBtwShots;
     private float timeBtwShots;
 
     [HideInInspector] public bool isReadyShoot = true;
 
-    public TextMeshProUGUI amountBulletText;
+    [SerializeField] private TextMeshProUGUI amountBulletText;
 
-    public GameObject objBullet;
-    public Transform shootPoint;
+    [SerializeField] private GameObject objBullet;
+    [SerializeField] private Transform shootPoint;
 
     public weapomTypeEnum weapomType;
     private static weapomTypeEnum weapomTypeStatic;
@@ -67,9 +67,9 @@ public class GunSystem : MonoBehaviour
                     }
                     else if (weapomType == weapomTypeEnum.shotgun)
                     {
-                        Instantiate(objBullet, shootPoint.position, Quaternion.Euler(shootPoint.localEulerAngles.x, shootPoint.localEulerAngles.y, shootPoint.localEulerAngles.z - 75));
+                        Instantiate(objBullet, shootPoint.position, Quaternion.Euler(shootPoint.rotation.eulerAngles.x, shootPoint.rotation.eulerAngles.y, shootPoint.rotation.eulerAngles.z - 15));
                         Instantiate(objBullet, shootPoint.position, shootPoint.rotation);
-                        Instantiate(objBullet, shootPoint.position, Quaternion.Euler(shootPoint.localEulerAngles.x, shootPoint.localEulerAngles.y, shootPoint.localEulerAngles.z - 105));
+                        Instantiate(objBullet, shootPoint.position, Quaternion.Euler(shootPoint.rotation.eulerAngles.x, shootPoint.rotation.eulerAngles.y, shootPoint.rotation.eulerAngles.z + 15));
                         bullets -= 3;
                         timeBtwShots = startTimeBtwShots[1];
                     }

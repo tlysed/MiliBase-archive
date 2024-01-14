@@ -8,27 +8,27 @@ using UnityEngine.UI;
 public class PlayerStatistics : MonoBehaviour
 {
     [Header("Time")]
-    public float waitTime;
+    [SerializeField] private float waitTime;
     private float realWaitTime = -5;
 
     [Header("Statistic")]
 
-    public float minPoints;
+    public static float MaxPoints = 100;
     public static float Points = 0;
     public static int Kills = 0;
     public static int Levels = 1;
 
     [Header("UI")]
-    public TextMeshProUGUI playerScore;
+    [SerializeField] private TextMeshProUGUI playerScore;
 
     private void Update()
     {
 
-        if (Points >= minPoints)
+        if (Points >= MaxPoints)
         {
-            minPoints += minPoints/2;
+            MaxPoints += 50 * Levels;
             Points = 0;
-            PlayerStatistics.Levels++;
+            Levels++;
             realWaitTime = Time.time;
         }
         if (Time.time - realWaitTime < waitTime)
@@ -38,7 +38,7 @@ public class PlayerStatistics : MonoBehaviour
         }
         else
         {
-            playerScore.text = "Points:" + Points.ToString() + "/" + minPoints.ToString();
+            playerScore.text = "Points:" + Points.ToString() + "/" + MaxPoints.ToString();
             playerScore.color = Color.white;
         }
     }

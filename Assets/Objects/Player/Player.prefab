@@ -139,7 +139,6 @@ MonoBehaviour:
   timeWaitingHeal: 5
   damageEffect: {fileID: 2743219857852503356, guid: 2089e0b7c796e4f4db9a5e710a05baae, type: 3}
   speed: 5
-  _controlType: 0
   _walkJoystick: {fileID: 0}
   _shootJoystick: {fileID: 0}
   safeZone: 0
@@ -158,8 +157,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitTime: 3
-  minPoints: 100
-  CorrectLevel: 0
   playerScore: {fileID: 0}
 --- !u!50 &1670098563243984402
 Rigidbody2D:

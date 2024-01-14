@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class spawnerRooms : MonoBehaviour
 {
-    public GameObject playerRoom;
-    public List<GameObject> startSpawnPoints;
+    [SerializeField] private GameObject playerRoom;
+    [SerializeField] private List<GameObject> startSpawnPoints;
 
     public List<Rooms> topRoom;
     public List<Rooms> downRoom;
     public List<Rooms> leftRoom;
     public List<Rooms> rightRoom;
+    [SerializeField] private List<Rooms> allRoom;
     [System.Serializable]
     public class Rooms
     {
@@ -21,13 +22,13 @@ public class spawnerRooms : MonoBehaviour
     [HideInInspector] public List<GameObject> finalRooms;
     [HideInInspector] public int finalRoomsAmount = 0;
 
-    public int minRooms;
-    public int maxRooms;
+    [SerializeField] private int minRooms;
+    [SerializeField] private int maxRooms;
 
     [HideInInspector] public int nowRoom = 1;
     [HideInInspector] public int amountRooms = 0;
 
-    public GameObject Portal;
+    [SerializeField] private GameObject Portal;
 
     [HideInInspector] public bool spawned = false;
     private void Awake()
