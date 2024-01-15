@@ -77,7 +77,7 @@ public class spawnerRooms : MonoBehaviour
                 GameObject.FindGameObjectWithTag("Player").transform.position = allRoom[rand].transform.position;
                 spawned = true;
             }
-            else
+            else if(finalRooms.Count == 0 && GameObject.FindGameObjectsWithTag("RoomSpawnPoint").Length == 0)
             {
                 GameObject.FindGameObjectWithTag("LoaderCanvas").GetComponent<loaderSystem>().UnLoadingLevel(SceneManager.GetActiveScene().buildIndex);
                 Debug.Log("Перезапуск");

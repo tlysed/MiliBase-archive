@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class RoomSystem : MonoBehaviour
 {
-    public GameObject enemyToSpawn;
-    public List<GameObject> objectToSpawn;
+    [SerializeField] private float difficulty = 3.5f;
+    [SerializeField] private GameObject enemyToSpawn;
+    [SerializeField] private List<GameObject> objectToSpawn;
 
-    public List<GameObject> SpawnObjectPoints;
-    public List<GameObject> metalDoors;
+    [SerializeField] private List<GameObject> SpawnObjectPoints;
+    [SerializeField] public List<GameObject> metalDoors;
 
     [HideInInspector] public bool playerInRoom = false;
     [HideInInspector] public List<GameObject> enemyInRoom;
@@ -42,17 +43,21 @@ public class RoomSystem : MonoBehaviour
     }
     public void SpawnEntity()
     {
-        for (int i = 0; i < SpawnObjectPoints.Count; i++)
+        for (int i = PlayerStatistics.Levels; i < SpawnObjectPoints.Count; i++)
         {
-            float randCount = Random.Range(0, 11);
-            if (randCount < 4.5f) { Destroy(SpawnObjectPoints[i]); SpawnObjectPoints.RemoveAt(i); }
+            Destroy(SpawnObjectPoints[i]); SpawnObjectPoints.RemoveAt(i);
         }
         for (int i = 0; i < SpawnObjectPoints.Count; i++)
         {
             float randCount = Random.Range(0, 11);
-            if (randCount < 4.5f)
+            if (randCount > difficulty) { Destroy(SpawnObjectPoints[i]); SpawnObjectPoints.RemoveAt(i); }
+        }
+        for (int i = 0; i < SpawnObjectPoints.Count; i++)
+        {
+            float randCount = Random.Range(0, 11);
+            if (randCount > difficulty)
             {
-                int rand = Random.Range(0, objectToSpawn.Count - 1);
+                int rand = Random.Range(0, objectToSpawn.Count);
                 var obj = Instantiate(objectToSpawn[rand], SpawnObjectPoints[i].transform.position, Quaternion.identity);
                 obj.transform.parent = SpawnObjectPoints[i].transform;
             }

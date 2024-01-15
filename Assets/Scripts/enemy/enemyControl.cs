@@ -99,7 +99,7 @@ public class enemyControl : MonoBehaviour
             
             else if (enemyType == enemyTypeEnum.heavy)
             {
-                //if (Vector3.Distance(Player.transform.position, gameObject.transform.position) < 4f) //nothing
+                //типа вблизи ху€рит
             }
             Follow(Player);
         }
@@ -144,7 +144,7 @@ public class enemyControl : MonoBehaviour
     public void OnMeleeAttack()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (Vector3.Distance(player.transform.position, transform.position) < 3.25f)
+        if (Vector3.Distance(player.transform.position, transform.position) < 2.5f)
         {
             player.GetComponent<PlayerInfo>().TakeDamage(meleeDamage);
         }
@@ -160,7 +160,12 @@ public class enemyControl : MonoBehaviour
     }
     void Follow(GameObject target)
     {
-        if (Vector3.Distance(target.transform.position, transform.position) > 3f)
+        float targetDistance = 0f;
+        if (enemyType == enemyTypeEnum.nearby) targetDistance = 2.25f;
+        else if (enemyType == enemyTypeEnum.armed) targetDistance = 7.5f;
+        else if (enemyType == enemyTypeEnum.heavy) targetDistance = 0f;
+
+        if (Vector3.Distance(target.transform.position, transform.position) > targetDistance)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed / 1.5f * Time.deltaTime);
         }
