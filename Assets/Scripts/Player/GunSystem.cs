@@ -111,8 +111,8 @@ public class GunSystem : MonoBehaviour
             bullets += maxBullets;
             maxBullets = 0;
         }
+        GetComponentInParent<Animator>().SetBool("start_reload", false);
         isReadyShoot = true;
-        return;
     }
     private void OnDestroy()
     {

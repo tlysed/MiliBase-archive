@@ -1,3 +1,4 @@
+using EmeraldPowder.CameraScaler;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,12 +7,22 @@ using UnityEngine.UI;
 
 public class PauseSystem : MonoBehaviour
 {
+
     [SerializeField] private GameObject panel;
     [SerializeField] private TMP_Dropdown qualityDropdown;
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private Slider mobileScaleSlider;
     [SerializeField] private TextMeshProUGUI volumePercent;
     [SerializeField] private TextMeshProUGUI mobileScalePercent;
+
+    private new Camera camera;
+    private void Awake()
+    {
+        camera = Camera.main;
+        qualityDropdown.value = QualitySettings.GetQualityLevel();
+        volumePercent.text = (100 * volumeSlider.value).ToString("F0") + "%";
+        mobileScalePercent.text = (100 * mobileScaleSlider.value).ToString("F0") + "%";
+    }
     public void UnPauseGame()
     {
         panel.SetActive(false);
@@ -32,13 +43,14 @@ public class PauseSystem : MonoBehaviour
     {
         QualitySettings.SetQualityLevel(qualityIndex);
     }
-    private void Update()
+    public void ChangeVolume()
     {
         volumePercent.text = (100 * volumeSlider.value).ToString("F0") + "%";
-        mobileScalePercent.text = (100 * mobileScaleSlider.value).ToString("F0") + "%";
     }
-    private void Awake()
+    public void ChangeMobileScale()
     {
-        qualityDropdown.value = QualitySettings.GetQualityLevel();
+        mobileScalePercent.text = (100 * mobileScaleSlider.value).ToString("F0") + "%";
+        camera.GetComponent<CameraScaler>().MatchWidthOrHeight = mobileScaleSlider.value;
+
     }
 }

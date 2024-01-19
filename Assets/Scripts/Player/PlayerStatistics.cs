@@ -17,6 +17,7 @@ public class PlayerStatistics : MonoBehaviour
     public static float Points = 0;
     public static int Kills = 0;
     public static int Levels = 1;
+    public static int Races = 0;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI playerScore;

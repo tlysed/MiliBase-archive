@@ -85,7 +85,7 @@ public class PlayerInfo : MonoBehaviour
             if (Mathf.Abs(_shootJoystick.Horizontal) > 0 || Mathf.Abs(_shootJoystick.Horizontal) > 0)
             {
                 rotateZ = Mathf.Atan2(_shootJoystick.Vertical, _shootJoystick.Horizontal) * Mathf.Rad2Deg;
-                weapon.GetComponent<GunSystem>().Shoot();
+                if(!safeZone) weapon.GetComponent<GunSystem>().Shoot();
             }
             else
             {
@@ -104,7 +104,7 @@ public class PlayerInfo : MonoBehaviour
 
         if ((Input.GetKeyDown(KeyCode.R) && !anim.GetBool("right_Click") && !anim.GetBool("left_Click") && !safeZone) || weapon.GetComponent<GunSystem>().bullets == 0 && weapon.GetComponent<GunSystem>().maxBullets != 0)
         {
-            anim.SetTrigger("start_Reload");
+            anim.SetBool("start_reload", true);
             weapon.GetComponent<GunSystem>().isReadyShoot = false;
         }
 
