@@ -72,10 +72,9 @@ public class WeaponChangerOBJ : MonoBehaviour
     }
     void ChangeWeaponType()
     {
-        var player = GameObject.FindGameObjectWithTag("Player");
-        if (type == WeaponType.pistol && PlayerStatistics.Levels >= 1) { player.GetComponentInChildren<GunSystem>().weapomType = weapomTypeEnum.pistol; }
-        else if (type == WeaponType.shotgun && PlayerStatistics.Levels >= 2) player.GetComponentInChildren<GunSystem>().weapomType = weapomTypeEnum.shotgun;
-        else if (type == WeaponType.rifle && PlayerStatistics.Levels >= 3) player.GetComponentInChildren<GunSystem>().weapomType = weapomTypeEnum.rifle;
-        else if (type == WeaponType.heavy && PlayerStatistics.Levels >= 4) player.GetComponentInChildren<GunSystem>().weapomType = weapomTypeEnum.heavy;
+        if (type == WeaponType.pistol && PlayerStatistics.Levels >= 1) { GunSystem.weapomType = weapomTypeEnum.pistol; }
+        else if (type == WeaponType.shotgun && PlayerStatistics.Levels >= 2) GunSystem.weapomType = weapomTypeEnum.shotgun;
+        else if (type == WeaponType.rifle && PlayerStatistics.Levels >= 3) GunSystem.weapomType = weapomTypeEnum.rifle;
+        else if (type == WeaponType.heavy && PlayerStatistics.Levels >= 4) GunSystem.weapomType = weapomTypeEnum.heavy;
     }
 }

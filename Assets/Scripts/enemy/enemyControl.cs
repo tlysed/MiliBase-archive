@@ -8,14 +8,14 @@ public class enemyControl : MonoBehaviour
 {
     [Header("Health")]
 
-    public float health;//100%=100 HP
-    public GameObject damageEffect;
+    [SerializeField] private float health;//100%=100 HP
+    [SerializeField] private GameObject damageEffect;
 
     [Header("Movement")]
 
-    public float speed;
-    public bool isTriggered = false;
-    public GameObject[] pointsOfPath;
+    [SerializeField] private float speed;
+    [SerializeField] private bool isTriggered = false;
+    [SerializeField] private GameObject[] pointsOfPath;
 
     private int correctPoint = 0;
     private float waitTime;
@@ -30,17 +30,17 @@ public class enemyControl : MonoBehaviour
         heavy
     }
 
-    public float startTimeBtwShots;
+    [SerializeField] private float startTimeBtwShots;
     private float timeBtwShots;
 
-    public GameObject weapon_GUN;
-    public Transform shootPoint;
-    public GameObject objBullet;
+    [SerializeField] private GameObject weapon_GUN;
+    [SerializeField] private Transform shootPoint;
+    [SerializeField] private GameObject objBullet;
 
-    public GameObject weapon_MELEE;
-    public int meleeDamage;
+    [SerializeField] private GameObject weapon_MELEE;
+    [SerializeField] private int meleeDamage;
 
-    public int heavyDamage;
+    [SerializeField] private int heavyDamage;
 
     private Animator anim;
     void Start()
@@ -168,6 +168,7 @@ public class enemyControl : MonoBehaviour
         if (Vector3.Distance(target.transform.position, transform.position) > targetDistance)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed / 1.5f * Time.deltaTime);
+            anim.SetTrigger("walking");
         }
 
         Vector2 direction = target.transform.position - transform.position;

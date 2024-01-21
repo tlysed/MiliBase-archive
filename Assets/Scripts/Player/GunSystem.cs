@@ -26,14 +26,13 @@ public class GunSystem : MonoBehaviour
     [SerializeField] private GameObject objBullet;
     [SerializeField] private Transform shootPoint;
 
-    public weapomTypeEnum weapomType;
-    private static weapomTypeEnum weapomTypeStatic;
+    public static weapomTypeEnum weapomType;
     private void Start()
     {
         if (weapomType == weapomTypeEnum.pistol) { maxBullets = 54; bullets = 18; }
-        else if (weapomType == weapomTypeEnum.shotgun) { maxBullets = 18; bullets = 6; }
+        else if (weapomType == weapomTypeEnum.shotgun) { maxBullets = 48; bullets = 6; }
         else if (weapomType == weapomTypeEnum.rifle) { maxBullets = 90; bullets = 30; }
-        else if (weapomType == weapomTypeEnum.heavy) { maxBullets = 3; bullets = 1; }
+        else if (weapomType == weapomTypeEnum.heavy) { maxBullets = 9; bullets = 1; }
     }
     private void Update()
     {
@@ -113,13 +112,5 @@ public class GunSystem : MonoBehaviour
         }
         GetComponentInParent<Animator>().SetBool("start_reload", false);
         isReadyShoot = true;
-    }
-    private void OnDestroy()
-    {
-        weapomTypeStatic = weapomType;
-    }
-    private void OnEnable()
-    {
-        weapomType = weapomTypeStatic;
     }
 }

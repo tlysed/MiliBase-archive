@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class telepotSystem : MonoBehaviour
 {
-    public Vector3 cameraChangePos;
-    public Vector3 playerChangePos;
+    [SerializeField] public Vector3 cameraChangePos;
+    [SerializeField] public Vector3 playerChangePos;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

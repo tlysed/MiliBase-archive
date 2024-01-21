@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-
 public class PlayerInfo : MonoBehaviour
 {
     [Header("Health")]
@@ -94,6 +92,10 @@ public class PlayerInfo : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0f, rotateZ);
         }
         moveVelocity = moveInput.normalized * speed;
+        if(moveVelocity != new Vector2(0,0))
+        {
+            anim.SetTrigger("walking");
+        }
 
         //                                      Player Interaction
 
@@ -139,9 +141,5 @@ public class PlayerInfo : MonoBehaviour
     {
         health -= damage;
         safeTime = Time.time;
-    }
-    public void ChangeTypeControl()
-    {
-        isMobile = !isMobile;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomSystem : MonoBehaviour
 {
-    [SerializeField] private float difficulty = 3.5f;
+    [SerializeField][Range(0,10)] private float difficulty = 3 + PlayerStatistics.Levels;
     [SerializeField] private GameObject enemyToSpawn;
     [SerializeField] private List<GameObject> objectToSpawn;
 
@@ -73,6 +73,10 @@ public class RoomSystem : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) playerInRoom = true;
+        if (collision.CompareTag("MetalDoor")) metalDoors.Add(collision.gameObject);
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
         if (collision.CompareTag("MetalDoor")) metalDoors.Add(collision.gameObject);
     }
     private void OnTriggerExit2D(Collider2D collision)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -47,11 +48,6 @@ public class spawnerRooms : MonoBehaviour
         {
             Destroy(playerRoom);
         }
-
-        if (!spawned && Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene(1);
-        }
         if(!spawned && allRoom.Count == amountRooms && GameObject.FindGameObjectsWithTag("RoomSpawnPoint").Length == 0)
         {
             if (finalRooms.Count >= 2)
@@ -82,6 +78,11 @@ public class spawnerRooms : MonoBehaviour
                 GameObject.FindGameObjectWithTag("LoaderCanvas").GetComponent<loaderSystem>().UnLoadingLevel(SceneManager.GetActiveScene().buildIndex);
                 Debug.Log("Перезапуск");
             }
+        }
+        else if (allRoom.Count < amountRooms && GameObject.FindGameObjectsWithTag("RoomSpawnPoint").Length == 0)
+        {
+            GameObject.FindGameObjectWithTag("LoaderCanvas").GetComponent<loaderSystem>().UnLoadingLevel(SceneManager.GetActiveScene().buildIndex);
+            Debug.Log("Перезапуск");
         }
     }
 }

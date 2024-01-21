@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class BoxSystems : MonoBehaviour
 {
-    public int health;
-    public GameObject spawnObj;
-    public Transform spawnPoint;
+    [SerializeField] private int health;
+    [SerializeField] private List<GameObject> spawnObjects;
+    [SerializeField] private Transform spawnPoint;
 
     void Update()
     {
         if (health <= 0)
         {
-            Instantiate(spawnObj, spawnPoint.position, spawnPoint.rotation);
+            int rand = Random.Range(0, spawnObjects.Count);
+            Instantiate(spawnObjects[rand], spawnPoint.position, spawnPoint.rotation);
             Destroy(gameObject);
         }
     }

@@ -5,37 +5,37 @@ using UnityEngine;
 public class bulletphysics : MonoBehaviour
 {
     private Rigidbody2D rd;
-    public float speed;
+    [SerializeField] private float speed;
 
-    public float lifeTime;
-    public float distance;
-    public List<int> damage;
+    [SerializeField] private float lifeTime;
+    [SerializeField] private float distance;
+    [SerializeField] private List<int> damage;
     private int realDamage = 3;
-    public bool enemyBullet;
+    [SerializeField] private bool enemyBullet;
 
-    public LayerMask solid;
+    [SerializeField] private LayerMask solid;
 
-    public GameObject effect;
-    public GameObject weapon;
+    [SerializeField] private GameObject effect;
+    [SerializeField] private GameObject weapon;
     void Start()
     {
         weapon = GameObject.FindGameObjectWithTag("Weapon");
         rd = GetComponent<Rigidbody2D>();
         if(weapon != null && !enemyBullet)
         {
-            if (weapon.GetComponent<GunSystem>().weapomType == weapomTypeEnum.pistol)
+            if (GunSystem.weapomType == weapomTypeEnum.pistol)
             {
                 realDamage = damage[0];
             }
-            else if (weapon.GetComponent<GunSystem>().weapomType == weapomTypeEnum.shotgun)
+            else if (GunSystem.weapomType == weapomTypeEnum.shotgun)
             {
                 realDamage = damage[1];
             }
-            else if (weapon.GetComponent<GunSystem>().weapomType == weapomTypeEnum.rifle)
+            else if (GunSystem.weapomType == weapomTypeEnum.rifle)
             {
                 realDamage = damage[2];
             }
-            else if (weapon.GetComponent<GunSystem>().weapomType == weapomTypeEnum.heavy)
+            else if (GunSystem.weapomType == weapomTypeEnum.heavy)
             {
                 realDamage = damage[3];
             }
