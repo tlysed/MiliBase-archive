@@ -255,7 +255,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5965251339110573646
 Canvas:
@@ -348,8 +348,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -18, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7522801016871167316}
   - {fileID: 2223661023230273640}
@@ -370,10 +370,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   sprites:
-  - {fileID: -799841721, guid: 0b031cfe9fe47674baa3acbc5e14725c, type: 3}
-  - {fileID: 897570993, guid: 0b031cfe9fe47674baa3acbc5e14725c, type: 3}
-  - {fileID: 923018386, guid: 0b031cfe9fe47674baa3acbc5e14725c, type: 3}
-  - {fileID: -1321566122, guid: 0b031cfe9fe47674baa3acbc5e14725c, type: 3}
+  - {fileID: 178469699, guid: 3d3f53f167d09a64590fae77792ba486, type: 3}
+  - {fileID: 1599934848, guid: 3d3f53f167d09a64590fae77792ba486, type: 3}
+  - {fileID: -175150171, guid: 3d3f53f167d09a64590fae77792ba486, type: 3}
+  - {fileID: 980754081, guid: 3d3f53f167d09a64590fae77792ba486, type: 3}
   image: {fileID: 4250153646068532168}
   text: {fileID: 907610106618919224}
 --- !u!58 &607241406484252244
@@ -438,8 +438,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 50015615675425111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -484,12 +484,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 652905109, guid: 0b031cfe9fe47674baa3acbc5e14725c, type: 3}
+  m_Sprite: {fileID: 178469699, guid: 3d3f53f167d09a64590fae77792ba486, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.34, y: 0.22}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

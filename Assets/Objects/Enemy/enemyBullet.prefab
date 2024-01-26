@@ -51,7 +51,7 @@ MonoBehaviour:
   lifeTime: 0.5
   distance: 0.5
   damage: 0a000000080000000500000064000000
-  enemyBullet: 0
+  enemyBullet: 1
   solid:
     serializedVersion: 2
     m_Bits: 192

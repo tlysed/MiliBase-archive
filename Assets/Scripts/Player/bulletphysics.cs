@@ -16,12 +16,12 @@ public class bulletphysics : MonoBehaviour
     [SerializeField] private LayerMask solid;
 
     [SerializeField] private GameObject effect;
-    [SerializeField] private GameObject weapon;
+    private GameObject weapon;
     void Start()
     {
         weapon = GameObject.FindGameObjectWithTag("Weapon");
         rd = GetComponent<Rigidbody2D>();
-        if(weapon != null && !enemyBullet)
+        if (weapon != null && !enemyBullet)
         {
             if (GunSystem.weapomType == weapomTypeEnum.pistol)
             {
@@ -37,9 +37,10 @@ public class bulletphysics : MonoBehaviour
             }
             else if (GunSystem.weapomType == weapomTypeEnum.heavy)
             {
-                realDamage = damage[3];
+                realDamage = damage[0];
             }
         }
+        else realDamage = 3;
     }
     
     void Update()
@@ -57,11 +58,11 @@ public class bulletphysics : MonoBehaviour
             {
                 hitInfo.collider.GetComponentInParent<doorSystem>().TakeDamage(realDamage);
             }
-            else if (hitInfo.collider.CompareTag("Player") && !enemyBullet)
+            else if (hitInfo.collider.CompareTag("Player") && enemyBullet)
             {
                 hitInfo.collider.GetComponentInParent<PlayerInfo>().TakeDamage(realDamage);
             }
-            else if (hitInfo.collider.CompareTag("Enemy"))
+            else if (hitInfo.collider.CompareTag("Enemy") && !enemyBullet)
             {
                 hitInfo.collider.GetComponentInParent<enemyControl>().TakeDamage(realDamage);
             }

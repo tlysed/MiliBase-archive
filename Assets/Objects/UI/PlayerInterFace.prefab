@@ -50,12 +50,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2237443f8107784b9292e5c852e2fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
   sprites:
-  - {fileID: -799841721, guid: 0b031cfe9fe47674baa3acbc5e14725c, type: 3}
-  - {fileID: 897570993, guid: 0b031cfe9fe47674baa3acbc5e14725c, type: 3}
-  - {fileID: 923018386, guid: 0b031cfe9fe47674baa3acbc5e14725c, type: 3}
-  - {fileID: -1321566122, guid: 0b031cfe9fe47674baa3acbc5e14725c, type: 3}
+  - {fileID: 178469699, guid: 3d3f53f167d09a64590fae77792ba486, type: 3}
+  - {fileID: 1599934848, guid: 3d3f53f167d09a64590fae77792ba486, type: 3}
+  - {fileID: -175150171, guid: 3d3f53f167d09a64590fae77792ba486, type: 3}
+  - {fileID: 980754081, guid: 3d3f53f167d09a64590fae77792ba486, type: 3}
 --- !u!222 &807945781939198587
 CanvasRenderer:
   m_ObjectHideFlags: 0

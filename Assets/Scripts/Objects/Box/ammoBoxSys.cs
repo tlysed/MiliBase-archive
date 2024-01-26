@@ -10,9 +10,9 @@ public class ammoBoxSys : MonoBehaviour
         {
             int plusBullets = 0;
             if (GunSystem.weapomType == weapomTypeEnum.pistol) plusBullets = 54;
-            else if (GunSystem.weapomType == weapomTypeEnum.pistol) plusBullets = 36;
-            else if (GunSystem.weapomType == weapomTypeEnum.pistol) plusBullets = 90;
-            else if (GunSystem.weapomType == weapomTypeEnum.pistol) plusBullets = 3;
+            else if (GunSystem.weapomType == weapomTypeEnum.shotgun) plusBullets = 48;
+            else if (GunSystem.weapomType == weapomTypeEnum.rifle) plusBullets = 90;
+            else if (GunSystem.weapomType == weapomTypeEnum.heavy) plusBullets = 9;
             collision.GetComponentInChildren<GunSystem>().maxBullets += plusBullets;
             Destroy(gameObject);
         }

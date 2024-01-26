@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class UIWeaponChanger : MonoBehaviour
 {
-    [SerializeField] private GameObject weapon;
     [SerializeField] private List<Sprite> sprites;
     private Image image;
     void Start()
