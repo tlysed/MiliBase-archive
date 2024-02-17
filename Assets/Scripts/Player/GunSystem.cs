@@ -28,6 +28,7 @@ public class GunSystem : MonoBehaviour
     private Transform shootPoint;
 
     [SerializeField] private List<GameObject> models;
+    [SerializeField] private List<GameObject> soundOfGuns;
 
     public static weapomTypeEnum weapomType;
     private void Start()
@@ -103,7 +104,7 @@ public class GunSystem : MonoBehaviour
             }
             else if(!isReadyShoot && !isReloading)
             {
-                amountBulletText.text = "Reloading";
+                amountBulletText.text = "Перезарадка";
                 amountBulletText.color = Color.red;
             }
         }
@@ -119,6 +120,7 @@ public class GunSystem : MonoBehaviour
                     if (weapomType == weapomTypeEnum.pistol)
                     {
                         Instantiate(objBullet, shootPoint.position, shootPoint.rotation);
+                        Destroy(Instantiate(soundOfGuns[0], models[0].transform), 3f);
                         bullets -= 1;
                         timeBtwShots = startTimeBtwShots[0];
                     }
@@ -127,6 +129,7 @@ public class GunSystem : MonoBehaviour
                         Instantiate(objBullet, shootPoint.position, Quaternion.Euler(shootPoint.rotation.eulerAngles.x, shootPoint.rotation.eulerAngles.y, shootPoint.rotation.eulerAngles.z - 15));
                         Instantiate(objBullet, shootPoint.position, shootPoint.rotation);
                         Instantiate(objBullet, shootPoint.position, Quaternion.Euler(shootPoint.rotation.eulerAngles.x, shootPoint.rotation.eulerAngles.y, shootPoint.rotation.eulerAngles.z + 15));
+                        Destroy(Instantiate(soundOfGuns[1], models[1].transform), 3f);
                         bullets -= 3;
                         timeBtwShots = startTimeBtwShots[1];
                         GetComponentInParent<Animator>().SetBool("reload_Shotgun_Forearm", true);
@@ -135,12 +138,14 @@ public class GunSystem : MonoBehaviour
                     else if (weapomType == weapomTypeEnum.rifle)
                     {
                         Instantiate(objBullet, shootPoint.position, shootPoint.rotation);
+                        Destroy(Instantiate(soundOfGuns[2], models[2].transform), 3f);
                         bullets -= 1;
                         timeBtwShots = startTimeBtwShots[2];
                     }
                     else if (weapomType == weapomTypeEnum.heavy)
                     {
                         Instantiate(heavyBullet, shootPoint.position, shootPoint.rotation);
+                        Destroy(Instantiate(soundOfGuns[3], models[3].transform), 3f);
                         bullets -= 1;
                         timeBtwShots = startTimeBtwShots[3];
                     }

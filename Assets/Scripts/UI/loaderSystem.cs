@@ -8,9 +8,11 @@ public class loaderSystem : MonoBehaviour
 {
     private Animator animator;
     private int levelToLoad;
-    public GameObject loadingScreen;
-    public Slider slider;
     private bool levelLoaded = false;
+
+    [SerializeField] private GameObject loadingScreen;
+    [SerializeField] private Slider slider;
+
     private void Start()
     {
         animator = GetComponent<Animator>();

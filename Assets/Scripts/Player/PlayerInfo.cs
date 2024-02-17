@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class PlayerInfo : MonoBehaviour
 {
@@ -9,14 +11,13 @@ public class PlayerInfo : MonoBehaviour
 
     public float health;//100%=100 HP
     [SerializeField] private int timeWaitingHeal;
-    [SerializeField] private GameObject damageEffect;
 
     private float safeTime;
 
     [Header("Movement")]
 
     [SerializeField] private float speed;
-    [SerializeField] public static bool isMobile = false;
+    [SerializeField] public static bool isMobile;
     [SerializeField] private Joystick _walkJoystick;
     [SerializeField] private Joystick _shootJoystick;
 
@@ -29,6 +30,8 @@ public class PlayerInfo : MonoBehaviour
     [Header("UI")]
 
     [SerializeField] private GameObject interFaceImage;
+    private bool ended = false;
+    [SerializeField] private int levelToLoad;
 
     private Rigidbody2D rd;
     private Vector2 moveInput;
@@ -42,7 +45,8 @@ public class PlayerInfo : MonoBehaviour
         anim = GetComponent<Animator>();
         safeTime = -timeWaitingHeal;
 
-        if(!isMobile)
+        
+        if (!isMobile)
         {
             _walkJoystick.gameObject.SetActive(false);
             _shootJoystick.gameObject.SetActive(false);
@@ -57,8 +61,8 @@ public class PlayerInfo : MonoBehaviour
         if (health > 100) health = 100;
         else if (health <= 0)
         {
-            GameObject.FindGameObjectWithTag("LoaderCanvas").GetComponent<loaderSystem>().UnLoadingLevel(1);
-            health = 0;
+            if (!ended) StartCoroutine(EndWindow());
+            health = -1;
         }
         if (Time.time - safeTime > timeWaitingHeal) Healing();
         if(!safeZone) interFaceImage.GetComponent<Image>().color = new Color(105f,0,0, Mathf.InverseLerp(100,-1,health));
@@ -95,6 +99,7 @@ public class PlayerInfo : MonoBehaviour
         if(moveVelocity != new Vector2(0,0))
         {
             anim.SetTrigger("walking");
+            StartCoroutine(Walking());
         }
 
         //                                      Player Interaction
@@ -161,5 +166,18 @@ public class PlayerInfo : MonoBehaviour
     {
         health -= damage;
         safeTime = Time.time;
+    }
+    IEnumerator Walking()
+    {
+        PlayerStatistics.Distance++;
+        yield return new WaitForSeconds(1);
+    }
+    IEnumerator EndWindow()
+    {
+        GameObject.FindGameObjectWithTag("EndWindow").transform.GetChild(0).gameObject.SetActive(true);
+        FinalWindow.turnBasedWindow(levelToLoad);
+        rd.constraints = RigidbodyConstraints2D.FreezePosition;
+        ended = true;
+        yield return new WaitForSeconds(1);
     }
 }

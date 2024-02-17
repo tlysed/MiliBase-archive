@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomSystem : MonoBehaviour
 {
-    [SerializeField][Range(0,10)] private float difficulty = 3 + PlayerStatistics.Levels;
+    [SerializeField][Range(0, 10)] private float difficulty = 3 + PlayerStatistics.Points/1000;
     [SerializeField] private GameObject enemyToSpawn;
     [SerializeField] private List<GameObject> objectToSpawn;
 
@@ -43,7 +43,7 @@ public class RoomSystem : MonoBehaviour
     }
     public void SpawnEntity()
     {
-        for (int i = PlayerStatistics.Levels; i < SpawnObjectPoints.Count; i++)
+        for (int i = (int)PlayerStatistics.Points / 1000; i < SpawnObjectPoints.Count; i++)
         {
             Destroy(SpawnObjectPoints[i]); SpawnObjectPoints.RemoveAt(i);
         }

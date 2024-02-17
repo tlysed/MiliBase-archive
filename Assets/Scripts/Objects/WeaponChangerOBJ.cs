@@ -27,33 +27,33 @@ public class WeaponChangerOBJ : MonoBehaviour
         else if (type == WeaponType.rifle) image.GetComponent<SpriteRenderer>().sprite = sprites[2];
         else if (type == WeaponType.heavy) image.GetComponent<SpriteRenderer>().sprite = sprites[3];
 
-        if(PlayerStatistics.Levels < 1 && type == WeaponType.pistol)
+        if(PlayerStatistics.Points < 0 && type == WeaponType.pistol)
         {
             var color = image.GetComponent<SpriteRenderer>().color;
             color.a = 0.1f;
             image.GetComponent<SpriteRenderer>().color = color;
-            text.text = "Needed level : 1";
+            text.text = "Нужно очков : 0";
         }
-        else if (PlayerStatistics.Levels < 2 && type == WeaponType.shotgun)
+        else if (PlayerStatistics.Points < 200 && type == WeaponType.shotgun)
         {
             var color = image.GetComponent<SpriteRenderer>().color;
             color.a = 0.1f;
             image.GetComponent<SpriteRenderer>().color = color;
-            text.text = "Needed level : 2";
+            text.text = "Нужно очков : 200";
         }
-        else if (PlayerStatistics.Levels < 3 && type == WeaponType.rifle)
+        else if (PlayerStatistics.Points < 350 && type == WeaponType.rifle)
         {
             var color = image.GetComponent<SpriteRenderer>().color;
             color.a = 0.1f;
             image.GetComponent<SpriteRenderer>().color = color;
-            text.text = "Needed level : 3";
+            text.text = "Нужно очков : 350";
         } 
-        else if (PlayerStatistics.Levels < 4 && type == WeaponType.heavy)
+        else if (PlayerStatistics.Points < 500 && type == WeaponType.heavy)
         {
             var color = image.GetComponent<SpriteRenderer>().color;
             color.a = 0.1f;
             image.GetComponent<SpriteRenderer>().color = color;
-            text.text = "Needed level : 4";
+            text.text = "Нужно очков : 500";
         }
         else
         {
@@ -74,22 +74,22 @@ public class WeaponChangerOBJ : MonoBehaviour
     private void ChangeWeaponType(GameObject player)
     {
 
-        if (type == WeaponType.pistol && PlayerStatistics.Levels >= 1)
+        if (type == WeaponType.pistol && PlayerStatistics.Points >= 0)
         {
             GunSystem.weapomType = weapomTypeEnum.pistol;
             player.GetComponentInChildren<GunSystem>().ChangeWeapon(0);
         }
-        else if (type == WeaponType.shotgun && PlayerStatistics.Levels >= 2)
+        else if (type == WeaponType.shotgun && PlayerStatistics.Points >= 200)
         {
             GunSystem.weapomType = weapomTypeEnum.shotgun;
             player.GetComponentInChildren<GunSystem>().ChangeWeapon(1);
         }
-        else if (type == WeaponType.rifle && PlayerStatistics.Levels >= 3)
+        else if (type == WeaponType.rifle && PlayerStatistics.Points >= 350)
         {
             GunSystem.weapomType = weapomTypeEnum.rifle;
             player.GetComponentInChildren<GunSystem>().ChangeWeapon(2);
         }
-        else if (type == WeaponType.heavy && PlayerStatistics.Levels >= 4)
+        else if (type == WeaponType.heavy && PlayerStatistics.Points >= 500)
         {
             GunSystem.weapomType = weapomTypeEnum.heavy;
             player.GetComponentInChildren<GunSystem>().ChangeWeapon(3);

@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelToLoad: 2
+  endWindow: {fileID: 282647295432877240, guid: 5badac37c4f760546afe2d53cbaa956d, type: 3}
 --- !u!70 &7167604189529812726
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 85a6b69766e5a56419d07456d59c7f28
+guid: b645fd8bebc708948970ba9e74583a2f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -150,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15b11c99475461243ba3d941213ffd0b
-      internalID: 5741500
+      spriteID: d83f47eb47b701e4e8a1bc857bab2d2a
+      internalID: -1648142852
       vertices: []
       indices: 
       edges: []
@@ -171,8 +171,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 473da8f6d43b48044a58117825cd25a8
-      internalID: 1647088687
+      spriteID: ed2d10ba1d891734ab424cba75335043
+      internalID: -1191859318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_up_2
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 485
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e53002e760cb8640994e8b12a830a6c
+      internalID: 205379784
       vertices: []
       indices: 
       edges: []
@@ -188,8 +209,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      map_up_0: 5741500
-      map_up_1: 1647088687
+      map_up_0: -1648142852
+      map_up_1: -1191859318
+      map_up_2: 205379784
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

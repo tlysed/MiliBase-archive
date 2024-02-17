@@ -15,6 +15,10 @@ TagManager:
   - EnemyPoint
   - Enemy
   - MetalDoor
+  - MusicSource
+  - EndWindow
+  - Car
+  - Bomb
   layers:
   - Default
   - TransparentFX

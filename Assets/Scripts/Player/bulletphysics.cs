@@ -10,7 +10,7 @@ public class bulletphysics : MonoBehaviour
     [SerializeField] private float lifeTime;
     [SerializeField] private float distance;
     [SerializeField] private List<int> damage;
-    private int realDamage = 3;
+    [SerializeField]  private int realDamage = 3;
     [SerializeField] private bool enemyBullet;
 
     [SerializeField] private LayerMask solid;
@@ -65,6 +65,14 @@ public class bulletphysics : MonoBehaviour
             else if (hitInfo.collider.CompareTag("Enemy") && !enemyBullet)
             {
                 hitInfo.collider.GetComponentInParent<enemyControl>().TakeDamage(realDamage);
+            }
+            else if (hitInfo.collider.CompareTag("Car") && enemyBullet)
+            {
+                hitInfo.collider.GetComponentInParent<enemyControl>().TakeDamage(2);
+            }
+            else if (hitInfo.collider.CompareTag("Bomb") && !enemyBullet)
+            {
+                hitInfo.collider.GetComponentInParent<bombPhysics>().TakeDamage(realDamage);
             }
             Destroy(gameObject);
         }

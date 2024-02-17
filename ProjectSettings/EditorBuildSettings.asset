@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/turn-based levels.unity
     guid: 9c1d0ca709d27ee41bfc3f0295ea147f
+  - enabled: 1
+    path: Assets/Scenes/highway-run.unity
+    guid: f42c7ac5e24ddb442a3689fcdde8e5d5
   m_configObjects: {}

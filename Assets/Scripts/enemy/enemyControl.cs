@@ -109,6 +109,7 @@ public class enemyControl : MonoBehaviour
         {
             gameObject.GetComponentInParent<RoomSystem>().enemyInRoom.Remove(gameObject);
             Destroy(Instantiate(damageEffect, gameObject.transform.position, Quaternion.identity), 1f);
+            PlayerStatistics.Kills++;
             Destroy(gameObject);
         }
     }
